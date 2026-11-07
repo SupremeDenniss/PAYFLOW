@@ -17,3 +17,6 @@ results/
 *.pem
 *.p12
 *.pfx
+web/node_modules/
+web/dist/
+web/.vitest/

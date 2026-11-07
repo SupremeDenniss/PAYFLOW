@@ -2,6 +2,10 @@
 
 PAYFLOW is a simulated payment backend written in Go. It stores JPY-denominated payment requests in PostgreSQL and orchestrates a durable mock banking provider through Temporal. It does not move money or contact banks.
 
+## Local web dashboard
+
+`web/` adds a local React/TypeScript/Vite operations console for authenticated synthetic payments, service health, merchant balance, operator inspection imports, and actual benchmark JSON. See the [PowerShell startup, demonstration, and screenshot guide](docs/dashboard.md). The browser uses the existing Go ConnectRPC API and does not add privileged backend endpoints. Session payment counts are labeled as session-specific; AWS architecture is shown as **Infrastructure as Code — Not Deployed**.
+
 ## AWS readiness (Phases 6–7)
 
 The repository now includes four multi-stage Linux container targets (`api`, `worker`, `migrate`, `admin`), a production configuration for RDS hostname-verified TLS and Temporal Cloud API-key TLS, and Terraform for a private AWS ECS Fargate deployment. Terraform defines private API/worker tasks, a one-off administrator task, isolated RDS, an internal HTTPS ALB, ECR, Secrets Manager secret containers, IAM roles, CloudWatch logs and basic alarms. Services begin at zero desired tasks until migrations and deployment prerequisites are reviewed. The local Docker Compose workflow below remains the development environment.
